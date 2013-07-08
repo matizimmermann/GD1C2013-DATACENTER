@@ -495,3 +495,13 @@ BEGIN
 END
 GO
 
+
+/*-------------------------------------------------------------------*/
+/*-------------------------STORED PROCEDURE--------------------------*/
+CREATE PROCEDURE DATACENTER.insert_recorrido @cod numeric(18,0), @orig nvarchar(255), @dest nvarchar(255), @serv int, @pr_pas numeric(18,2), @pr_enco numeric(18,2)
+AS
+BEGIN
+  INSERT INTO DATACENTER.Recorrido
+  VALUES (@cod, @serv, @orig, @dest, @pr_pas, @pr_enco)
+END
+GO
