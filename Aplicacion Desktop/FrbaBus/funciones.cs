@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
-using FrbaBus.Abm_Rol;
 
 namespace FrbaBus
 {
@@ -50,8 +49,22 @@ namespace FrbaBus
             return existe_rol;
         }
 
+        public bool son_todos_numeros(string codigo)
+        {
+            int i;
+            int tamaño = codigo.Length; 
+            bool result = true;
+            for (i = 0; i < tamaño; i++)
+            {
+                if (char.IsNumber(codigo, i) == false)
+                {
+                    result = false;
+                    return result;
+                }
+            }
+           
+            return result;
+        }
 
-
-  
     }
 }

@@ -55,16 +55,14 @@ namespace FrbaBus
         public void execute_query_only(string query)
         {
             SqlConnection conexion = this.connector();
-            SqlCommand comando = new SqlCommand(query,conexion); //sqlcommand almacena una instruccion sql que luego ejecutar executenonquery
-            int cant_filas_afectadas = comando.ExecuteNonQuery(); //ejecuta la query y devuelve filas afectadas 
+            SqlCommand comando = new SqlCommand(query, conexion); //sqlcommand almacena una instruccion sql que luego ejecutar executenonquery
+            int cant_filas_afectadas = comando.ExecuteNonQuery(); //ejecuta la query y devuelve filas afectadas
             if (cant_filas_afectadas == 0)
             {
                 MessageBox.Show("Fallo operacion al tratar de modificar la BD");
             }
             conexion.Close();
         }
-
-
 
         
 
