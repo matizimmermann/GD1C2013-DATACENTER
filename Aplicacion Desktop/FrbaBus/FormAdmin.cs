@@ -23,6 +23,12 @@ namespace FrbaBus
             alta_rol.ShowDialog();
         }
 
+        private void rolToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Abm_Rol_Modif modif_rol = new Abm_Rol_Modif();
+            modif_rol.ShowDialog();
+        }
+
 
     }
 }

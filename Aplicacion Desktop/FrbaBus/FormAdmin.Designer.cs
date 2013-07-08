@@ -30,9 +30,10 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.altaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,8 +57,17 @@
             this.altaToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.altaToolStripMenuItem.Text = "Alta";
             // 
+            // rolToolStripMenuItem
+            // 
+            this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
+            this.rolToolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+            this.rolToolStripMenuItem.Text = "Rol";
+            this.rolToolStripMenuItem.Click += new System.EventHandler(this.rolToolStripMenuItem_Click);
+            // 
             // modificaciónToolStripMenuItem
             // 
+            this.modificaciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rolToolStripMenuItem1});
             this.modificaciónToolStripMenuItem.Name = "modificaciónToolStripMenuItem";
             this.modificaciónToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.modificaciónToolStripMenuItem.Text = "Modificación";
@@ -68,12 +78,12 @@
             this.bajaToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.bajaToolStripMenuItem.Text = "Baja";
             // 
-            // rolToolStripMenuItem
+            // rolToolStripMenuItem1
             // 
-            this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
-            this.rolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rolToolStripMenuItem.Text = "Rol";
-            this.rolToolStripMenuItem.Click += new System.EventHandler(this.rolToolStripMenuItem_Click);
+            this.rolToolStripMenuItem1.Name = "rolToolStripMenuItem1";
+            this.rolToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.rolToolStripMenuItem1.Text = "Rol";
+            this.rolToolStripMenuItem1.Click += new System.EventHandler(this.rolToolStripMenuItem1_Click);
             // 
             // FormAdmin
             // 
@@ -98,5 +108,6 @@
         private System.Windows.Forms.ToolStripMenuItem modificaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem1;
     }
 }

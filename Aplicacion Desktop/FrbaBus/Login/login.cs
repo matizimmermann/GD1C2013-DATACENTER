@@ -70,7 +70,7 @@ namespace FrbaBus.Login
 
                     //limpiamos cant_intentos
                     cant_fallidas = 0;
-                    DataTable retorno_update = procedure.update_cant_intentos_fallidos(username_textbox.Text, cant_fallidas);
+                    procedure.update_cant_intentos_fallidos(username_textbox.Text, cant_fallidas);
 
                     
 
@@ -85,7 +85,7 @@ namespace FrbaBus.Login
                 {
                     cant_fallidas++;
                     //Se debe actualizar el campo adm_cant_intentos de la base de datos
-                    DataTable retorno_update = procedure.update_cant_intentos_fallidos(username_textbox.Text, cant_fallidas);
+                    procedure.update_cant_intentos_fallidos(username_textbox.Text, cant_fallidas);
                     
                     
                    

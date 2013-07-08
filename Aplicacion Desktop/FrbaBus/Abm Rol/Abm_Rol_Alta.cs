@@ -13,6 +13,7 @@ namespace FrbaBus.Abm_Rol
     {
 
         funciones func = new funciones();
+        stored_procedures procedure = new stored_procedures();
 
         public Abm_Rol_Alta()
         {
@@ -74,12 +75,23 @@ namespace FrbaBus.Abm_Rol
                 return;
             }
 
+            procedure.insert_Rol(name_rol.Text);
 
+            foreach (int indice_func in this.list_funcionalidades.CheckedIndices) //checkedIndices devuelve la coleccion de los indices activados
+            {
 
-
-            MessageBox.Show("Agregamos Rol");
+                this.list_funcionalidades.SelectedIndex= indice_func; //establecemos que el elemento seleccionado posee el indice marcado correspondiente
+                //selectValue retorna el value_member del item seleccionado (seleccionado != tildado)
+                //insertamos las funcionalidades del nuevo rol
+                procedure.insert_funcxrol(name_rol.Text, Convert.ToInt16(this.list_funcionalidades.SelectedValue.ToString()));
+                
+                
+            }
+            MessageBox.Show("Rol Insertado correctamente");
 
         }
+
+
 
 
       

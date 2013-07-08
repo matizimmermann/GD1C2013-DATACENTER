@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using FrbaBus.Abm_Rol;
 
 namespace FrbaBus
 {
@@ -16,6 +17,7 @@ namespace FrbaBus
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormCompra());
+            //Application.Run(new Abm_Rol_Busqueda());
             
            
         }

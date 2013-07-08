@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using FrbaBus.Abm_Rol;
 
 namespace FrbaBus
 {
@@ -49,5 +50,8 @@ namespace FrbaBus
             return existe_rol;
         }
 
+
+
+  
     }
 }
