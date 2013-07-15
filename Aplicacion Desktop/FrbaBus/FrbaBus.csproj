@@ -81,6 +81,18 @@
     <Compile Include="Abm Recorrido\Abm_Reco_Alta.Designer.cs">
       <DependentUpon>Abm_Reco_Alta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Recorrido\Abm_Reco_Modificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Recorrido\Abm_Reco_Modificacion.Designer.cs">
+      <DependentUpon>Abm_Reco_Modificacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Recorrido\Abm_Reco_Seleccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Recorrido\Abm_Reco_Seleccion.Designer.cs">
+      <DependentUpon>Abm_Reco_Seleccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Rol\Abm_Rol_Alta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +165,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Abm Recorrido\Abm_Reco_Alta.resx">
       <DependentUpon>Abm_Reco_Alta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Recorrido\Abm_Reco_Modificacion.resx">
+      <DependentUpon>Abm_Reco_Modificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Recorrido\Abm_Reco_Seleccion.resx">
+      <DependentUpon>Abm_Reco_Seleccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\Abm_Rol_Alta.resx">
       <DependentUpon>Abm_Rol_Alta.cs</DependentUpon>

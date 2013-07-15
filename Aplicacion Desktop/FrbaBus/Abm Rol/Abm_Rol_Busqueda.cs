@@ -20,12 +20,6 @@ namespace FrbaBus.Abm_Rol
         private void buscar_boton_Click(object sender, EventArgs e)
         {
 
-            if (rol_a_buscarTBox.Text == "")
-            {
-                MessageBox.Show("Debe Ingresar un Rol ");
-                return;
-            }
-
             //buscamos Patron
             string query = "SELECT rol_id AS ID, rol_nombre AS Nombre, rol_estado AS Estado FROM DATACENTER.Rol WHERE rol_nombre like '"+rol_a_buscarTBox.Text+"%'";
             connection connect = new connection();

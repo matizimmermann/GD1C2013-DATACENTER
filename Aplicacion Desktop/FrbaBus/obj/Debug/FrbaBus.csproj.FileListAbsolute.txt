@@ -36,3 +36,5 @@ C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaB
 C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.exe
 C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\bin\Debug\FrbaBus.pdb
 C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.Abm_Reco_Alta.resources
+C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.Abm_Reco_Modificacion.resources
+C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.Abm_Reco_Seleccion.resources
