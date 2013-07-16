@@ -14,7 +14,6 @@ namespace FrbaBus.Abm_Recorrido
         public Abm_Reco_Seleccion()
         {
             InitializeComponent();
-            this.limpiar();
         }
 
         private void limpiar()
@@ -25,54 +24,6 @@ namespace FrbaBus.Abm_Recorrido
             comboBoxTipoServ.ResetText();
         }
 
-        private void comboBoxTipoServ_Load(object sender, EventArgs e)
-        {
-            string query = "SELECT serv_tipo, serv_id FROM DATACENTER.Servicio";
-
-            connection conexion = new connection();
-            DataTable tabla_servicios = conexion.execute_query(query);
-
-            comboBoxTipoServ.DataSource = tabla_servicios;
-
-            comboBoxTipoServ.DisplayMember = "serv_tipo";
-
-            comboBoxTipoServ.ValueMember = "serv_id";
-        }
-
-        private void comboBoxOrigen_Load(object sender, EventArgs e)
-        {
-            //consulta a ejecutar para mostrar todas las ciudades posibles a seleccionar en el comboBox
-            string query = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
-
-            //instanciamos obj de la clase connection y le enviamos la query para que la ejecute
-            connection conexion = new connection();
-            DataTable tabla_origenes = conexion.execute_query(query);
-
-            //el resultado de la query lo cargamos en un data table
-            //DataSource es el origen de los datos en nuestro caso la tabla que alberga el resultado de la query
-            comboBoxOrigen.DataSource = tabla_origenes;
-
-            //Displaymember es la columna de la tabla que se va a mostrar en nuestro caso hay una sola
-            comboBoxOrigen.DisplayMember = "ciu_nombre";
-
-            //ValueMembermember es el valor que tiene el campo seleccionado en nuestro caso ponemos la PK
-            comboBoxOrigen.ValueMember = "ciu_nombre";
-        }
-
-        private void comboBoxDestino_Load(object sender, EventArgs e)
-        {
-            string query = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
-
-            connection conexion = new connection();
-            DataTable tabla_destinos = conexion.execute_query(query);
-
-            comboBoxDestino.DataSource = tabla_destinos;
-
-            comboBoxDestino.DisplayMember = "ciu_nombre";
-
-            comboBoxDestino.ValueMember = "ciu_nombre";
-        }
-
         private void botonLimpiar_Click(object sender, EventArgs e)
         {
             this.limpiar();
@@ -80,6 +31,13 @@ namespace FrbaBus.Abm_Recorrido
 
         private void botonBuscar_Click(object sender, EventArgs e)
         {
+
+            if (comboBoxTipoServ.SelectedValue == null) //ESTO CONTROLA QUE NO ME PONGAN UN SERVICIO QUE NO EXISTE EN EL COMBOBOX, PORQ SINO EXPLOTA TODO PQ ESTOY TRABAJANDO CON EL VALUEMEMBER, ENTONCES EL SQL ROMPE AL INTENTAR HACER LA CONVERSION DE TIPO
+            {
+                MessageBox.Show("ERROR. EL TIPO DE SERVICIO ES INCORRECTO");
+                return;
+            }
+
             string query = "SELECT reco_cod, serv_tipo, reco_origen, reco_destino, reco_precio_base_pasaje, reco_precio_base_kg FROM DATACENTER.Recorrido JOIN DATACENTER.Servicio ON reco_serv_id = serv_id WHERE 1 = 1";
             //ESTA QUERY ASI COMO ESTA CORRESPONDE A TODOS LOS CAMPOS VACIOS...
             string condicion = "";
@@ -122,6 +80,55 @@ namespace FrbaBus.Abm_Recorrido
             this.dataGridReco.DataSource = tabla_reco_busq;
         }
 
+        private void dataGridReco_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        { //verificamos que el evento se haya producido en la columna que contiene el boton de seleccionar
+            MessageBox.Show(e.ColumnIndex.ToString());
+            if (e.ColumnIndex == 0)
+            {
+                string serv = this.dataGridReco.CurrentRow.Cells[2].Value.ToString();
+                string orig = this.dataGridReco.CurrentRow.Cells[3].Value.ToString();
+                string dest = this.dataGridReco.CurrentRow.Cells[4].Value.ToString();
+                
+                Abm_Reco_Modificacion abm_reco_mod = new Abm_Reco_Modificacion(serv,orig,dest);
+                
+                abm_reco_mod.textBoxCodReco.Text = this.dataGridReco.CurrentRow.Cells[1].Value.ToString();
+                abm_reco_mod.numUpDownPrPas.Value = Convert.ToDecimal(this.dataGridReco.CurrentRow.Cells[5].Value);
+                abm_reco_mod.numUpDownPrEnco.Value = Convert.ToDecimal(this.dataGridReco.CurrentRow.Cells[6].Value);
+                /*
+                abm_rol_mod.rol_nomb_mod = this.roles_dataGrid.CurrentRow.Cells[2].Value.ToString();*/
+                abm_reco_mod.ShowDialog();
+                //cuando retorna de la modificacion refrescamos la pantalla
+                this.Close();
+            }
+
+        }
+
+        private void Abm_Reco_Seleccion_Load(object sender, EventArgs e)
+        {
+            connection conexion = new connection();
+
+            string query1 = "SELECT serv_tipo, serv_id FROM DATACENTER.Servicio";
+            DataTable tabla_servicios = conexion.execute_query(query1);
+            comboBoxTipoServ.DataSource = tabla_servicios;
+            comboBoxTipoServ.DisplayMember = "serv_tipo";
+            comboBoxTipoServ.ValueMember = "serv_id";
+
+
+            string query2 = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
+            DataTable tabla_origenes = conexion.execute_query(query2);
+            comboBoxOrigen.DataSource = tabla_origenes;
+            comboBoxOrigen.DisplayMember = "ciu_nombre";
+            comboBoxOrigen.ValueMember = "ciu_nombre";
+ 
+
+            string query3 = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
+            DataTable tabla_destinos = conexion.execute_query(query3);
+            comboBoxDestino.DataSource = tabla_destinos;
+            comboBoxDestino.DisplayMember = "ciu_nombre";
+            comboBoxDestino.ValueMember = "ciu_nombre";
+
+            limpiar();
+        }
 
 
 

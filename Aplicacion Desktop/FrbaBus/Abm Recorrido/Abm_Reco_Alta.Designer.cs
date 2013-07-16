@@ -110,7 +110,6 @@
             // 
             // comboBoxCiuOrigen
             // 
-            this.comboBoxCiuOrigen.FormattingEnabled = true;
             this.comboBoxCiuOrigen.Location = new System.Drawing.Point(168, 59);
             this.comboBoxCiuOrigen.Name = "comboBoxCiuOrigen";
             this.comboBoxCiuOrigen.Size = new System.Drawing.Size(154, 21);
@@ -210,9 +209,7 @@
             this.Name = "Abm_Reco_Alta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Alta Recorrido";
-            this.Load += new System.EventHandler(this.comboBoxCiuOrigen_Load);
-            this.Load += new System.EventHandler(this.comboBoxCiuDestino_Load);
-            this.Load += new System.EventHandler(this.comboBoxTipoServ_Load);
+            this.Load += new System.EventHandler(this.Abm_Reco_Alta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPrPas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPrEnco)).EndInit();
             this.ResumeLayout(false);

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaBus.Abm_Recorrido
 {
@@ -14,6 +15,9 @@ namespace FrbaBus.Abm_Recorrido
         public Abm_Reco_Alta()
         {
             InitializeComponent();
+            comboBoxCiuOrigen.DropDownStyle = ComboBoxStyle.DropDownList;   //ESTA PROPIEDA HACE QUE EL COMBO BOX
+            comboBoxCiuDestino.DropDownStyle = ComboBoxStyle.DropDownList;  //NO ME ACEPTE TEXTO, SINO QUE SOLAMENTE
+            comboBoxTipoServ.DropDownStyle = ComboBoxStyle.DropDownList;    //SE PUEDAN ELEGIR LAS OPCIONE DEL COMBO.
         }
 
         private void limpiar()
@@ -24,57 +28,6 @@ namespace FrbaBus.Abm_Recorrido
             comboBoxCiuOrigen.ResetText();
             comboBoxCiuDestino.ResetText();
             comboBoxTipoServ.ResetText();
-        }
-
-        private void comboBoxCiuOrigen_Load(object sender, EventArgs e)
-        {
-            //consulta a ejecutar para mostrar todas las ciudades posibles a seleccionar en el comboBox
-            string query = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
-
-            //instanciamos obj de la clase connection y le enviamos la query para que la ejecute
-            connection conexion = new connection();
-            DataTable tabla_origenes = conexion.execute_query(query);
-
-            //el resultado de la query lo cargamos en un data table
-            //DataSource es el origen de los datos en nuestro caso la tabla que alberga el resultado de la query
-            comboBoxCiuOrigen.DataSource = tabla_origenes;
-
-            //Displaymember es la columna de la tabla que se va a mostrar en nuestro caso hay una sola
-            comboBoxCiuOrigen.DisplayMember = "ciu_nombre";
-
-            //ValueMembermember es el valor que tiene el campo seleccionado en nuestro caso ponemos la PK
-            comboBoxCiuOrigen.ValueMember = "ciu_nombre";
-
-        }
-
-        private void comboBoxCiuDestino_Load(object sender, EventArgs e)
-        {
-            string query = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
-
-            connection conexion = new connection();
-            DataTable tabla_destinos = conexion.execute_query(query);
-
-            comboBoxCiuDestino.DataSource = tabla_destinos;
-
-            comboBoxCiuDestino.DisplayMember = "ciu_nombre";
-
-            comboBoxCiuDestino.ValueMember = "ciu_nombre";
-
-        }
-
-        private void comboBoxTipoServ_Load(object sender, EventArgs e)
-        {
-            string query = "SELECT serv_tipo, serv_id FROM DATACENTER.Servicio";
-
-            connection conexion = new connection();
-            DataTable tabla_servicios = conexion.execute_query(query);
-
-            comboBoxTipoServ.DataSource = tabla_servicios;
-
-            comboBoxTipoServ.DisplayMember = "serv_tipo";
-
-            comboBoxTipoServ.ValueMember = "serv_id";
-
         }
 
         private void botonRefrescar_Click(object sender, EventArgs e)
@@ -90,8 +43,8 @@ namespace FrbaBus.Abm_Recorrido
             if (cant_caract < 1 || cant_caract > 18)
             {
                 MessageBox.Show("ERROR: El codigo de recorrido debe tener entre 1 y 18 caracteres");
+                textBoxCodReco.Clear();
                 codigo_error = 1;
-                //return;
             }
             else
             {
@@ -100,7 +53,7 @@ namespace FrbaBus.Abm_Recorrido
                 if (funcion.son_todos_numeros(cod_reco) == false)
                 {
                     MessageBox.Show("ERROR: EL CODIGO DEBE SER NUMERICO");
-                    limpiar();
+                    textBoxCodReco.Clear();
                     codigo_error = 1;
                 }
             }
@@ -109,32 +62,20 @@ namespace FrbaBus.Abm_Recorrido
             {
                 MessageBox.Show("ERROR: Debe ingresar todos los campos obligatorios");
                 codigo_error = 1;
-                //return;
             }
 
             if (comboBoxCiuOrigen.Text == comboBoxCiuDestino.Text)
             {
                 MessageBox.Show("Error: La ciudad de origen y la ciudad de destino deben ser distintas");
                 codigo_error = 1;
-                //return;
             }
-
-            /*
-             * ESTA VALIDACION NO SIRVE PQ YA LO RESTRINGE EL NUMERICUPDOWN
-            if ((numUpDownPrPas.Value.ToString != "") || (numUpDownPrEnco.Value != ""))
-            {
-                MessageBox.Show(" EL CHABON NO ME MUESTRA Q CARAJO ME INGRESAAAA!!!!!");
-                codigo_error = 1;
-                return;
-            }
-            */
-
-            //SE INGRESARON LOS CAMPOS CORRECTAMENTE, AHORA CONTROLAMOS CONTRA LA BASE DE DATOS
 
             if (codigo_error == 1)
             {
                 return;
             }
+
+            //SE INGRESARON LOS CAMPOS CORRECTAMENTE, AHORA CONTROLAMOS CONTRA LA BASE DE DATOS
 
             connection conexion = new connection();
 
@@ -145,19 +86,49 @@ namespace FrbaBus.Abm_Recorrido
                 MessageBox.Show("ERROR: EL CODIGO DE RECORRIDO QUE INGRESASTE YA EXISTE");
                 limpiar();
                 codigo_error = 1;
-                //return;
             }
-            else //EL codigo es correcto
+            
+            tablaRecorridos.Clear();
+            tablaRecorridos = conexion.execute_query("SELECT 1 FROM DATACENTER.Recorrido WHERE reco_origen ="+"'"+comboBoxCiuOrigen.Text+"'"+" AND "+"reco_destino ="+"'"+comboBoxCiuDestino.Text+"'"+" AND "+"reco_serv_id ="+comboBoxTipoServ.SelectedValue);
+            if (tablaRecorridos.Rows.Count == 1) // Se cumple cuando el recorrido ingresado ya esta en la BD
             {
-                tablaRecorridos.Clear();
-                tablaRecorridos = conexion.execute_query("SELECT 1 FROM DATACENTER.Recorrido WHERE reco_origen ="+"'"+comboBoxCiuOrigen.Text+"'"+" AND "+"reco_destino ="+"'"+comboBoxCiuDestino.Text+"'"+" AND "+"reco_serv_id ="+comboBoxTipoServ.SelectedValue);
-                if (tablaRecorridos.Rows.Count == 1) // Se cumple cuando el recorrido ingresado ya esta en la BD
-                {
-                    MessageBox.Show("ERROR: YA EXISTE ESTE RECORRIDO CON ESTE SERVICIO");
-                    limpiar();
-                    codigo_error = 1;
-                    //return;
-                }
+                MessageBox.Show("ERROR: YA EXISTE ESTE RECORRIDO CON ESTE SERVICIO");
+                limpiar();
+                codigo_error = 1;
+            }
+
+
+            tablaRecorridos.Clear();
+            tablaRecorridos = conexion.execute_query("SELECT 1 FROM DATACENTER.Recorrido WHERE reco_origen =" + "'" + comboBoxCiuOrigen.Text + "'" + " AND " + "reco_destino =" + "'" + comboBoxCiuDestino.Text + "'" + " AND " + "reco_serv_id <>" + comboBoxTipoServ.SelectedValue + " AND " + "reco_precio_base_pasaje =" + numUpDownPrPas.Value);
+
+
+            /*string orig = comboBoxCiuOrigen.Text.ToString();
+            string dest = comboBoxCiuDestino.Text.ToString();
+            int serv = (int)comboBoxTipoServ.SelectedValue;
+            decimal pr_pas = numUpDownPrPas.Value;
+            decimal pr_enco = numUpDownPrEnco.Value;
+
+            connection connect = new connection();
+            SqlConnection conexion2 = connect.connector();
+            string query = "EXECUTE DATACENTER.insert_compra @orig, @dest, @serv, @pr_pas";
+
+            SqlCommand comando = new SqlCommand(query, conexion2);
+            comando.Parameters.AddWithValue("@orig", orig);
+            comando.Parameters.AddWithValue("@dest", dest);
+            comando.Parameters.AddWithValue("@serv", serv);
+            comando.Parameters.AddWithValue("@pr_pas", pr_pas);
+            string cod_compra = comando.ExecuteScalar().ToString();
+            conexion2.Close();
+            return cod_compra;*/
+            
+            
+            
+            
+            if (tablaRecorridos.Rows.Count == 0) // Se cumple cuando hay un mismo recorrido en la BD, pero con otro tipo de servicio, y estos recorridos tienen distinto precio, cosa que no tiene que pasar
+            {
+                MessageBox.Show("ERROR: EL PRECIO QUE INGRESASTE NO COINCIDE CON EL PRECIO QUE ESTA ESTABLECIDO PARA EL PAR ORIGEN-DESTINO ELEGIDOS");
+                limpiar();
+                codigo_error = 1;
             }
 
             if (codigo_error == 1)
@@ -170,17 +141,40 @@ namespace FrbaBus.Abm_Recorrido
                 string orig_ins = comboBoxCiuOrigen.Text.ToString();
                 string dest_ins = comboBoxCiuDestino.Text.ToString();
                 int serv_ins = (int)comboBoxTipoServ.SelectedValue;
-                decimal pr_paq_ins = numUpDownPrPas.Value;
+                decimal pr_pas_ins = numUpDownPrPas.Value;
                 decimal pr_enco_ins = numUpDownPrEnco.Value;
                 stored_procedures procedure = new stored_procedures();
-                procedure.insert_recorrido(cod_ins,orig_ins,dest_ins,serv_ins,pr_paq_ins,pr_enco_ins); //FALTA AGREGAR TODO LO NECESARIO
+                procedure.insert_recorrido(cod_ins,orig_ins,dest_ins,serv_ins,pr_pas_ins,pr_enco_ins);
                 MessageBox.Show("¡RECORRIDO AGREGADO CORRECTAMENTE!");
                 limpiar();
                 return;
             }
+        }
 
-           // if (textBoxCodReco.Text == "0")
-        
+        private void Abm_Reco_Alta_Load(object sender, EventArgs e)
+        {
+            connection conexion = new connection();
+            
+
+            string query1 = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
+            DataTable tabla_origenes = conexion.execute_query(query1);
+            comboBoxCiuOrigen.DataSource = tabla_origenes;
+            comboBoxCiuOrigen.DisplayMember = "ciu_nombre";
+            comboBoxCiuOrigen.ValueMember = "ciu_nombre";
+
+
+            string query2 = "SELECT ciu_nombre FROM DATACENTER.Ciudad";
+            DataTable tabla_destinos = conexion.execute_query(query2);
+            comboBoxCiuDestino.DataSource = tabla_destinos;
+            comboBoxCiuDestino.DisplayMember = "ciu_nombre";
+            comboBoxCiuDestino.ValueMember = "ciu_nombre";
+
+
+            string query3 = "SELECT serv_tipo, serv_id FROM DATACENTER.Servicio";
+            DataTable tabla_servicios = conexion.execute_query(query3);
+            comboBoxTipoServ.DataSource = tabla_servicios;
+            comboBoxTipoServ.DisplayMember = "serv_tipo";
+            comboBoxTipoServ.ValueMember = "serv_id";
         }
 
 

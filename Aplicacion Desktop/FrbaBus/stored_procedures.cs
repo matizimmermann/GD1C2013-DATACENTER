@@ -47,11 +47,47 @@ namespace FrbaBus
 
         }
 
-        public void insert_recorrido(string cod_ins,string orig_ins,string dest_ins,int serv_ins,decimal pr_paq_ins,decimal pr_enco_ins) //FALTA COMPLETAR!!
+        public void insert_recorrido(string cod_ins,string orig_ins,string dest_ins,int serv_ins,decimal pr_paq_ins,decimal pr_enco_ins)
         {
-            query = "EXECUTE DATACENTER.insert_recorrido "+"'"+cod_ins+"'"+", "+"'"+orig_ins+"'"+", "+"'"+dest_ins+"'"+", "+serv_ins+", "+pr_paq_ins+", "+pr_enco_ins;
+            connection connect = new connection();
+            SqlConnection conexion = connect.connector();
+
+            string query = "EXECUTE DATACENTER.insert_recorrido @cod_ins, @orig_ins, @dest_ins, @serv_ins, @pr_pas_ins, @pr_enco_ins";
+            
+            //query = "EXECUTE DATACENTER.insert_recorrido "+"'"+cod_ins+"'"+", "+"'"+orig_ins+"'"+", "+"'"+dest_ins+"'"+", "+serv_ins+", "+pr_paq_ins+", "+pr_enco_ins;
+            SqlCommand comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@cod_ins", cod_ins);
+            comando.Parameters.AddWithValue("@orig_ins", orig_ins);
+            comando.Parameters.AddWithValue("@dest_ins", dest_ins);
+            comando.Parameters.AddWithValue("@serv_ins", serv_ins);
+            comando.Parameters.AddWithValue("@pr_pas_ins", pr_paq_ins);
+            comando.Parameters.AddWithValue("@pr_enco_ins", pr_enco_ins);
+            conexion.Close();
+
+
+        }
+
+        public string insert_compra(string comprador_dni, string tipo_tarj_id, string cant_pasajes, string cant_total_kg, decimal costo_total)
+        {
+            connection connect = new connection();
+            SqlConnection conexion = connect.connector();
+            string query = "EXECUTE DATACENTER.insert_compra @comprador_dni, @tipo_tarj_id, @cant_pasajes, @cant_total_kg, @costo_total";
+
+            SqlCommand comando = new SqlCommand(query, conexion);
+            comando.Parameters.AddWithValue("@comprador_dni", comprador_dni);
+            comando.Parameters.AddWithValue("@tipo_tarj_id", tipo_tarj_id);
+            comando.Parameters.AddWithValue("@cant_pasajes", cant_pasajes);
+            comando.Parameters.AddWithValue("@cant_total_kg", cant_total_kg);
+            comando.Parameters.AddWithValue("@costo_total", costo_total);
+            string cod_compra = comando.ExecuteScalar().ToString();
+            conexion.Close();
+            return cod_compra;
+        }
+
+        internal void update_recorrido(string cod_act, string orig_act, string dest_act, int serv_act, decimal pr_paq_act, decimal pr_enco_act)
+        {
+            query = "EXECUTE DATACENTER.update_recorrido " + "'" + cod_act + "'" + ", " + "'" + orig_act + "'" + ", " + "'" + dest_act + "'" + ", " + serv_act + ", " + pr_paq_act + ", " + pr_enco_act;
             connect.execute_query_only(query);
         }
-        
     }
 }

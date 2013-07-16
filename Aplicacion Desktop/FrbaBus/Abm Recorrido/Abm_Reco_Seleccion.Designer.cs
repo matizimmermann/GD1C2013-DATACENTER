@@ -34,11 +34,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridReco = new System.Windows.Forms.DataGridView();
-            this.comboBoxOrigen = new System.Windows.Forms.ComboBox();
-            this.comboBoxDestino = new System.Windows.Forms.ComboBox();
-            this.comboBoxTipoServ = new System.Windows.Forms.ComboBox();
-            this.botonLimpiar = new System.Windows.Forms.Button();
-            this.botonBuscar = new System.Windows.Forms.Button();
             this.Cod_Reco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo_Serv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ciu_Origen = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +41,11 @@
             this.Precio_Base_Pasaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio_Base_Kg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.comboBoxOrigen = new System.Windows.Forms.ComboBox();
+            this.comboBoxDestino = new System.Windows.Forms.ComboBox();
+            this.comboBoxTipoServ = new System.Windows.Forms.ComboBox();
+            this.botonLimpiar = new System.Windows.Forms.Button();
+            this.botonBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReco)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,52 +108,10 @@
             this.dataGridReco.Location = new System.Drawing.Point(15, 91);
             this.dataGridReco.Name = "dataGridReco";
             this.dataGridReco.ReadOnly = true;
+            this.dataGridReco.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridReco.Size = new System.Drawing.Size(764, 291);
             this.dataGridReco.TabIndex = 6;
-            // 
-            // comboBoxOrigen
-            // 
-            this.comboBoxOrigen.FormattingEnabled = true;
-            this.comboBoxOrigen.Location = new System.Drawing.Point(335, 6);
-            this.comboBoxOrigen.Name = "comboBoxOrigen";
-            this.comboBoxOrigen.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxOrigen.TabIndex = 7;
-            // 
-            // comboBoxDestino
-            // 
-            this.comboBoxDestino.FormattingEnabled = true;
-            this.comboBoxDestino.Location = new System.Drawing.Point(335, 51);
-            this.comboBoxDestino.Name = "comboBoxDestino";
-            this.comboBoxDestino.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxDestino.TabIndex = 8;
-            // 
-            // comboBoxTipoServ
-            // 
-            this.comboBoxTipoServ.FormattingEnabled = true;
-            this.comboBoxTipoServ.Location = new System.Drawing.Point(105, 52);
-            this.comboBoxTipoServ.Name = "comboBoxTipoServ";
-            this.comboBoxTipoServ.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxTipoServ.TabIndex = 9;
-            // 
-            // botonLimpiar
-            // 
-            this.botonLimpiar.Location = new System.Drawing.Point(803, 236);
-            this.botonLimpiar.Name = "botonLimpiar";
-            this.botonLimpiar.Size = new System.Drawing.Size(139, 45);
-            this.botonLimpiar.TabIndex = 10;
-            this.botonLimpiar.Text = "Limpiar";
-            this.botonLimpiar.UseVisualStyleBackColor = true;
-            this.botonLimpiar.Click += new System.EventHandler(this.botonLimpiar_Click);
-            // 
-            // botonBuscar
-            // 
-            this.botonBuscar.Location = new System.Drawing.Point(803, 305);
-            this.botonBuscar.Name = "botonBuscar";
-            this.botonBuscar.Size = new System.Drawing.Size(139, 45);
-            this.botonBuscar.TabIndex = 11;
-            this.botonBuscar.Text = "Buscar";
-            this.botonBuscar.UseVisualStyleBackColor = true;
-            this.botonBuscar.Click += new System.EventHandler(this.botonBuscar_Click);
+            this.dataGridReco.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridReco_CellContentClick);
             // 
             // Cod_Reco
             // 
@@ -200,6 +158,50 @@
             this.Seleccionar.Text = "Seleccionar";
             this.Seleccionar.UseColumnTextForButtonValue = true;
             // 
+            // comboBoxOrigen
+            // 
+            this.comboBoxOrigen.FormattingEnabled = true;
+            this.comboBoxOrigen.Location = new System.Drawing.Point(335, 6);
+            this.comboBoxOrigen.Name = "comboBoxOrigen";
+            this.comboBoxOrigen.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxOrigen.TabIndex = 7;
+            // 
+            // comboBoxDestino
+            // 
+            this.comboBoxDestino.FormattingEnabled = true;
+            this.comboBoxDestino.Location = new System.Drawing.Point(335, 51);
+            this.comboBoxDestino.Name = "comboBoxDestino";
+            this.comboBoxDestino.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDestino.TabIndex = 8;
+            // 
+            // comboBoxTipoServ
+            // 
+            this.comboBoxTipoServ.FormattingEnabled = true;
+            this.comboBoxTipoServ.Location = new System.Drawing.Point(105, 52);
+            this.comboBoxTipoServ.Name = "comboBoxTipoServ";
+            this.comboBoxTipoServ.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTipoServ.TabIndex = 9;
+            // 
+            // botonLimpiar
+            // 
+            this.botonLimpiar.Location = new System.Drawing.Point(803, 236);
+            this.botonLimpiar.Name = "botonLimpiar";
+            this.botonLimpiar.Size = new System.Drawing.Size(139, 45);
+            this.botonLimpiar.TabIndex = 10;
+            this.botonLimpiar.Text = "Limpiar";
+            this.botonLimpiar.UseVisualStyleBackColor = true;
+            this.botonLimpiar.Click += new System.EventHandler(this.botonLimpiar_Click);
+            // 
+            // botonBuscar
+            // 
+            this.botonBuscar.Location = new System.Drawing.Point(803, 305);
+            this.botonBuscar.Name = "botonBuscar";
+            this.botonBuscar.Size = new System.Drawing.Size(139, 45);
+            this.botonBuscar.TabIndex = 11;
+            this.botonBuscar.Text = "Buscar";
+            this.botonBuscar.UseVisualStyleBackColor = true;
+            this.botonBuscar.Click += new System.EventHandler(this.botonBuscar_Click);
+            // 
             // Abm_Reco_Seleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,9 +220,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Abm_Reco_Seleccion";
             this.Text = "Abm_Reco_Seleccion";
-            this.Load += new System.EventHandler(this.comboBoxOrigen_Load);
-            this.Load += new System.EventHandler(this.comboBoxDestino_Load);
-            this.Load += new System.EventHandler(this.comboBoxTipoServ_Load);
+            this.Load += new System.EventHandler(this.Abm_Reco_Seleccion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReco)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
