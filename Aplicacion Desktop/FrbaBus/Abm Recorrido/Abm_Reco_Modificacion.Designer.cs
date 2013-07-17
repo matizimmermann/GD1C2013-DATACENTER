@@ -42,6 +42,9 @@
             this.numUpDownPrEnco = new System.Windows.Forms.NumericUpDown();
             this.botonLimpiar = new System.Windows.Forms.Button();
             this.botonGuardar = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxEstado = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPrPas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPrEnco)).BeginInit();
             this.SuspendLayout();
@@ -95,18 +98,18 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 175);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 13);
+            this.label5.Size = new System.Drawing.Size(106, 13);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Precio Base Pasaje:";
+            this.label5.Text = "*Precio Base Pasaje:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 209);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.Size = new System.Drawing.Size(87, 13);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Precio Base Kg:";
+            this.label6.Text = "*Precio Base Kg:";
             // 
             // comboBoxTipoServ
             // 
@@ -160,7 +163,7 @@
             // 
             // botonLimpiar
             // 
-            this.botonLimpiar.Location = new System.Drawing.Point(44, 277);
+            this.botonLimpiar.Location = new System.Drawing.Point(44, 336);
             this.botonLimpiar.Name = "botonLimpiar";
             this.botonLimpiar.Size = new System.Drawing.Size(75, 23);
             this.botonLimpiar.TabIndex = 12;
@@ -170,7 +173,7 @@
             // 
             // botonGuardar
             // 
-            this.botonGuardar.Location = new System.Drawing.Point(182, 277);
+            this.botonGuardar.Location = new System.Drawing.Point(170, 336);
             this.botonGuardar.Name = "botonGuardar";
             this.botonGuardar.Size = new System.Drawing.Size(75, 23);
             this.botonGuardar.TabIndex = 13;
@@ -178,11 +181,41 @@
             this.botonGuardar.UseVisualStyleBackColor = true;
             this.botonGuardar.Click += new System.EventHandler(this.botonGuardar_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 230);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(557, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "*Si modifica un precio, este se modificará para todos lo recorridos que tengan el" +
+                " mismo origen y destino que el actual.";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 266);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(106, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Estado del Recorrido";
+            // 
+            // textBoxEstado
+            // 
+            this.textBoxEstado.Location = new System.Drawing.Point(125, 263);
+            this.textBoxEstado.Name = "textBoxEstado";
+            this.textBoxEstado.ReadOnly = true;
+            this.textBoxEstado.Size = new System.Drawing.Size(132, 20);
+            this.textBoxEstado.TabIndex = 16;
+            // 
             // Abm_Reco_Modificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 312);
+            this.ClientSize = new System.Drawing.Size(593, 371);
+            this.Controls.Add(this.textBoxEstado);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.botonGuardar);
             this.Controls.Add(this.botonLimpiar);
             this.Controls.Add(this.numUpDownPrEnco);
@@ -223,5 +256,8 @@
         public System.Windows.Forms.ComboBox comboBoxDestino;
         public System.Windows.Forms.NumericUpDown numUpDownPrPas;
         public System.Windows.Forms.NumericUpDown numUpDownPrEnco;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox textBoxEstado;
     }
 }

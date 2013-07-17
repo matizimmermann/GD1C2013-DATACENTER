@@ -84,9 +84,15 @@ namespace FrbaBus
             return cod_compra;
         }
 
-        internal void update_recorrido(string cod_act, string orig_act, string dest_act, int serv_act, decimal pr_paq_act, decimal pr_enco_act)
+        public void update_recorrido(string cod_act, string orig_act, string dest_act, int serv_act, decimal pr_paq_act, decimal pr_enco_act)
         {
             query = "EXECUTE DATACENTER.update_recorrido " + "'" + cod_act + "'" + ", " + "'" + orig_act + "'" + ", " + "'" + dest_act + "'" + ", " + serv_act + ", " + pr_paq_act + ", " + pr_enco_act;
+            connect.execute_query_only(query);
+        }
+
+        public void update_estado_reco(string cod, char estado_act)
+        {
+            query = "EXECUTE DATACENTER.update_estado_reco " + "'" + cod + "'" + "," + "'" + estado_act + "'";
             connect.execute_query_only(query);
         }
     }
