@@ -161,11 +161,23 @@
       <DependentUpon>FormCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="funciones.cs" />
-    <Compile Include="GenerarViaje\Form1.cs">
+    <Compile Include="GenerarViaje\Alta_Viaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarViaje\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GenerarViaje\Alta_Viaje.Designer.cs">
+      <DependentUpon>Alta_Viaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarViaje\Seleccion_Micro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarViaje\Seleccion_Micro.Designer.cs">
+      <DependentUpon>Seleccion_Micro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarViaje\Seleccion_Reco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarViaje\Seleccion_Reco.Designer.cs">
+      <DependentUpon>Seleccion_Reco.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\login.cs">
       <SubType>Form</SubType>
@@ -204,6 +216,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCompra.resx">
       <DependentUpon>FormCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarViaje\Alta_Viaje.resx">
+      <DependentUpon>Alta_Viaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarViaje\Seleccion_Micro.resx">
+      <DependentUpon>Seleccion_Micro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarViaje\Seleccion_Reco.resx">
+      <DependentUpon>Seleccion_Reco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\login.resx">
       <DependentUpon>login.cs</DependentUpon>

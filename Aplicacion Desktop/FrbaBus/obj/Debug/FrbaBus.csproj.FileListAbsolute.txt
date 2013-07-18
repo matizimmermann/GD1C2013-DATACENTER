@@ -40,3 +40,6 @@ C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaB
 C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.Abm_Reco_Baja.resources
 C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.Abm_Reco_SelecDel.resources
 C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.Abm_Recorrido.Abm_Reco_Seleccion.resources
+C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.GenerarViaje.Alta_Viaje.resources
+C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.GenerarViaje.Seleccion_Reco.resources
+C:\Users\Matías Zimmermann\Desktop\GD1C2013-DATACENTER\Aplicacion Desktop\FrbaBus\obj\Debug\FrbaBus.GenerarViaje.Seleccion_Micro.resources

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using FrbaBus.Abm_Rol;
 using FrbaBus.Abm_Recorrido;
+using FrbaBus.GenerarViaje;
 
 namespace FrbaBus
 {
@@ -17,7 +18,7 @@ namespace FrbaBus
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Abm_Reco_SelecDel());
+            Application.Run(new Alta_Viaje());
             //Application.Run(new Abm_Rol_Busqueda());
             
            
