@@ -50,21 +50,8 @@ namespace FrbaBus
         public void insert_recorrido(string cod_ins,string orig_ins,string dest_ins,int serv_ins,decimal pr_paq_ins,decimal pr_enco_ins)
         {
             connection connect = new connection();
-            SqlConnection conexion = connect.connector();
-
-            string query = "EXECUTE DATACENTER.insert_recorrido @cod_ins, @orig_ins, @dest_ins, @serv_ins, @pr_pas_ins, @pr_enco_ins";
             
-            //query = "EXECUTE DATACENTER.insert_recorrido "+"'"+cod_ins+"'"+", "+"'"+orig_ins+"'"+", "+"'"+dest_ins+"'"+", "+serv_ins+", "+pr_paq_ins+", "+pr_enco_ins;
-            SqlCommand comando = new SqlCommand(query, conexion);
-            comando.Parameters.AddWithValue("@cod_ins", cod_ins);
-            comando.Parameters.AddWithValue("@orig_ins", orig_ins);
-            comando.Parameters.AddWithValue("@dest_ins", dest_ins);
-            comando.Parameters.AddWithValue("@serv_ins", serv_ins);
-            comando.Parameters.AddWithValue("@pr_pas_ins", pr_paq_ins);
-            comando.Parameters.AddWithValue("@pr_enco_ins", pr_enco_ins);
-            conexion.Close();
-
-
+            query = "EXECUTE DATACENTER.insert_recorrido "+"'"+cod_ins+"'"+", "+"'"+orig_ins+"'"+", "+"'"+dest_ins+"'"+", "+serv_ins+", "+pr_paq_ins+", "+pr_enco_ins;
         }
 
         public void insert_viaje(string fecha_sal, string fehca_lleg, string cod_reco_ins, string pat_mic_ins)

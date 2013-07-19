@@ -143,7 +143,7 @@ reco_origen nvarchar(255) NOT NULL,
 reco_destino nvarchar(255) NOT NULL,
 reco_precio_base_kg numeric(18,2) NULL,
 reco_precio_base_pasaje numeric (18,2) NULL,
-reco_estado CHAR NULL
+reco_estado CHAR NULL  -- ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡OJO QUE ESTE CAMPO ES NUEVO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 FOREIGN KEY (reco_serv_id) REFERENCES DATACENTER.Servicio (serv_id),
 FOREIGN KEY (reco_origen) REFERENCES DATACENTER.Ciudad (ciu_nombre),
 FOREIGN KEY (reco_destino) REFERENCES DATACENTER.Ciudad (ciu_nombre),
@@ -492,7 +492,7 @@ DROP COLUMN comp_codigo_pas_paq
 GO
 
 /*-------------------------------------------------------------------*/
-/*-------------------------STORED PROCEDURE (MATI)--------------------------*/
+/*-------------------------STORED PROCEDURE (FRANCO)--------------------------*/
 
 CREATE PROCEDURE DATACENTER.update_cant_intentos_fallidos @adm_username nvarchar(255), @cant_intentos int
 AS
@@ -556,6 +556,18 @@ BEGIN
   UPDATE DATACENTER.Recorrido
   SET reco_estado = @estado_reco
   WHERE reco_cod = @cod
+
+END
+GO
+
+/*-------------------------------------------------------------------*/
+/*-------------------------STORED PROCEDURE (MATI)--------------------------*/
+CREATE PROCEDURE DATACENTER.insert_viaje @fecha_sal DATETIME, @fecha_lleg DATETIME, @cod_reco NUMERIC(18,0), @patente NVARCHAR (255)
+AS
+BEGIN
+
+INSERT INTO DATACENTER.Viaje (viaj_mic_patente, viaj_reco_cod, viaj_fecha_salida, viaj_fecha_lleg_estimada)
+VALUES (@patente, @cod_reco, @fecha_sal, @fecha_lleg)
 
 END
 GO

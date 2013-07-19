@@ -32,7 +32,7 @@ namespace FrbaBus.Abm_Recorrido
             InitializeComponent();
             comboBoxOrigen.DropDownStyle = ComboBoxStyle.DropDownList;   //ESTA PROPIEDA HACE QUE EL COMBO BOX
             comboBoxDestino.DropDownStyle = ComboBoxStyle.DropDownList;  //NO ME ACEPTE TEXTO, SINO QUE SOLAMENTE
-            comboBoxTipoServ.DropDownStyle = ComboBoxStyle.DropDownList;    //SE PUEDAN ELEGIR LAS OPCIONE DEL COMBO.
+            comboBoxTipoServ.DropDownStyle = ComboBoxStyle.DropDownList;    //SE PUEDAN ELEGIR LAS OPCIONES DEL COMBO.
         }
 
         private void Abm_Reco_Modificacion_Load(object sender, EventArgs e)
