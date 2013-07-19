@@ -13,10 +13,12 @@ namespace FrbaBus.GenerarViaje
     {
         public string patente = "";
         string pat_micro = "";
+        string tipo_serv_reco = "";
 
-        public Seleccion_Micro()
+        public Seleccion_Micro(string serv)
         {
             InitializeComponent();
+            tipo_serv_reco = serv; // Es el tipo de servicio que tiene que tener el micro
         }
 
         private void limpiar()
@@ -55,6 +57,7 @@ namespace FrbaBus.GenerarViaje
             comboBoxTipoServ.DataSource = tabla_servicios;
             comboBoxTipoServ.DisplayMember = "serv_tipo";
             comboBoxTipoServ.ValueMember = "serv_id";
+            comboBoxTipoServ.Text = tipo_serv_reco;
 
             string query2 = "SELECT marc_nombre, marc_id FROM DATACENTER.Marca";
             DataTable tabla_marcas = conexion.execute_query(query2);
@@ -78,10 +81,71 @@ namespace FrbaBus.GenerarViaje
                 return;
             }
 
+            string query = "SELECT mic_patente, serv_tipo, marc_nombre, mic_nro, mic_cant_butacas FROM DATACENTER.Micro JOIN DATACENTER.Marca ON mic_marc_id = marc_id JOIN DATACENTER.Servicio ON mic_serv_id = serv_id WHERE serv_tipo = " + "'" + comboBoxTipoServ.Text.ToString() + "'";
+            //ESTA QUERY ASI COMO ESTA CORRESPONDE A TODOS LOS CAMPOS VACIOS, MENOS EL DE SERVICIO...
+            string condicion = "";
 
+            if (textBoxPatente.Text != "")
+            {
+                condicion = condicion + " AND " + "mic_patente = " + "'" + textBoxPatente.Text.ToString() + "'";
+            }
 
+            if (comboBoxMarca.Text != "")
+            {
+                condicion = condicion + " AND " + "marc_nombre = " + "'" + comboBoxMarca.Text.ToString() + "'";
+            }
+
+            if (textBoxCantBut.Text != "")
+            {
+                condicion = condicion + " AND " + "mic_cant_butacas >= " + textBoxCantBut.Text.ToString();
+            }
+
+            if (condicion != "")
+            {
+                query = query + condicion;
+            }
+
+            //ANTES DE ESTO DEBO RESOLVER EL STRING Q LE VOY A MANDAR COMO QUERY A LA CONEXION    
+            connection conexion = new connection();
+            DataTable tabla_micro_sel = conexion.execute_query(query);
+
+            this.Patentes.DataPropertyName = tabla_micro_sel.Columns[0].ToString();
+            this.Tipo_Serv.DataPropertyName = tabla_micro_sel.Columns[1].ToString();
+            this.Marca.DataPropertyName = tabla_micro_sel.Columns[2].ToString();
+            this.Nro_Micro.DataPropertyName = tabla_micro_sel.Columns[3].ToString();
+            this.Cant_Butacas.DataPropertyName = tabla_micro_sel.Columns[4].ToString();
+            //cargamos el data_grid con el resultado de la busqueda
+            this.dataGridMicro.DataSource = tabla_micro_sel;
+        }
+
+        private void dataGridMicro_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //verificamos que el evento se haya producido en la columna que contiene el boton de seleccionar
+            if (e.ColumnIndex == 0)
+            {
+                botonConfirmar.Enabled = true;
+                pat_micro = this.dataGridMicro.CurrentRow.Cells[1].Value.ToString();
+                MessageBox.Show("Usted ha seleccionado el micro: " + pat_micro + "." + " Si es correcto, por favor termine la operacion clickeando el boton de --CONFIRMAR SELECCION--");
+            }
+        }
+
+        private void botonConfirmar_Click(object sender, EventArgs e)
+        {
+            if (pat_micro == "")
+            {
+                MessageBox.Show("ERROR: Usted no ha seleccionado ninguna fila");
+                return;
+            }
+
+            patente = pat_micro;
         }
 
 
+
+
+
     }
+
+
 }
+

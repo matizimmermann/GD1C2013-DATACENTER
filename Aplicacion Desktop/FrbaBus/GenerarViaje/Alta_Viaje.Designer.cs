@@ -91,7 +91,7 @@
             // 
             // dateTimePickerSalida
             // 
-            this.dateTimePickerSalida.CustomFormat = "HH:mm dd-MM-yyyy";
+            this.dateTimePickerSalida.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePickerSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerSalida.Location = new System.Drawing.Point(160, 18);
             this.dateTimePickerSalida.MaxDate = new System.DateTime(2023, 7, 1, 0, 0, 0, 0);
@@ -103,7 +103,7 @@
             // 
             // dateTimePickerLlegada
             // 
-            this.dateTimePickerLlegada.CustomFormat = "HH:mm dd-MM-yyyy";
+            this.dateTimePickerLlegada.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dateTimePickerLlegada.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerLlegada.Location = new System.Drawing.Point(160, 57);
             this.dateTimePickerLlegada.MaxDate = new System.DateTime(2023, 7, 2, 0, 0, 0, 0);
@@ -167,6 +167,7 @@
             this.botonLimpiar.TabIndex = 12;
             this.botonLimpiar.Text = "Limpiar";
             this.botonLimpiar.UseVisualStyleBackColor = true;
+            this.botonLimpiar.Click += new System.EventHandler(this.botonLimpiar_Click);
             // 
             // botonGuardar
             // 
@@ -176,6 +177,7 @@
             this.botonGuardar.TabIndex = 13;
             this.botonGuardar.Text = "Guardar";
             this.botonGuardar.UseVisualStyleBackColor = true;
+            this.botonGuardar.Click += new System.EventHandler(this.botonGuardar_Click);
             // 
             // Alta_Viaje
             // 

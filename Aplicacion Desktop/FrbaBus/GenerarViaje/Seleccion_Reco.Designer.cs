@@ -224,6 +224,7 @@
             // botonConfirmar
             // 
             this.botonConfirmar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.botonConfirmar.Enabled = false;
             this.botonConfirmar.Location = new System.Drawing.Point(615, 5);
             this.botonConfirmar.Name = "botonConfirmar";
             this.botonConfirmar.Size = new System.Drawing.Size(137, 99);

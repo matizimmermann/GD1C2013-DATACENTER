@@ -11,10 +11,11 @@ namespace FrbaBus.GenerarViaje
 {
     public partial class Seleccion_Reco : Form
     {
-        public string codigo = "";
-        string codigo_reco = "";
-        public string servicio = "";
-        string servicio_reco = "";
+        
+        string codigo = "";
+        string servicio = "";
+       
+        public string[] cod_y_serv = new string[2];
 
         public Seleccion_Reco()
         {
@@ -121,23 +122,24 @@ namespace FrbaBus.GenerarViaje
             //verificamos que el evento se haya producido en la columna que contiene el boton de seleccionar
             if (e.ColumnIndex == 0)
             {
-                codigo_reco = this.dataGridReco.CurrentRow.Cells[1].Value.ToString();
-                servicio_reco = this.dataGridReco.CurrentRow.Cells[1].Value.ToString();
-                MessageBox.Show("Usted ha seleccionado el recorrido: " + codigo_reco + "." + " Si es correcto, por favor termine la operacion apretando el boton de --CONFIRMAR SELECCION--");
+                botonConfirmar.Enabled = true;
+                codigo = this.dataGridReco.CurrentRow.Cells[1].Value.ToString();
+                servicio = this.dataGridReco.CurrentRow.Cells[2].Value.ToString();
+                MessageBox.Show("Usted ha seleccionado el recorrido: " + codigo + "." + " Si es correcto, por favor termine la operacion apretando el boton de --CONFIRMAR SELECCION--");
             }
 
         }
 
         private void botonConfirmar_Click(object sender, EventArgs e)
         {
-            if (codigo_reco == "" || servicio_reco == "")
+            if (codigo == "" || servicio == "")
             {
                 MessageBox.Show("ERROR: Usted no ha seleccionado ninguna fila");
                 return;
             }
 
-            codigo = codigo_reco;
-            servicio = servicio_reco;
+            cod_y_serv[0] = codigo;
+            cod_y_serv[1] = servicio;
         }
 
 

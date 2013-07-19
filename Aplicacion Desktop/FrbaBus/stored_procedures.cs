@@ -67,6 +67,13 @@ namespace FrbaBus
 
         }
 
+        public void insert_viaje(string fecha_sal, string fehca_lleg, string cod_reco_ins, string pat_mic_ins)
+        {
+            connection conexion = new connection();
+
+            query = "EXECUTE DATACENTER.insert_viaje " + fecha_sal + ", " + fehca_lleg + ", " + cod_reco_ins + ", " + pat_mic_ins;
+        }
+
         public string insert_compra(string comprador_dni, string tipo_tarj_id, string cant_pasajes, string cant_total_kg, decimal costo_total)
         {
             connection connect = new connection();

@@ -40,15 +40,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPatente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Cod_Reco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo_Serv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ciu_Origen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ciu_Destino = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_Base_Pasaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_Base_Kg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.textBoxCantBut = new System.Windows.Forms.TextBox();
+            this.Patentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo_Serv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nro_Micro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant_Butacas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMicro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,12 +54,13 @@
             // 
             this.botonConfirmar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.botonConfirmar.Enabled = false;
-            this.botonConfirmar.Location = new System.Drawing.Point(615, 5);
+            this.botonConfirmar.Location = new System.Drawing.Point(671, 5);
             this.botonConfirmar.Name = "botonConfirmar";
             this.botonConfirmar.Size = new System.Drawing.Size(137, 99);
             this.botonConfirmar.TabIndex = 35;
             this.botonConfirmar.Text = "CONFIRMAR SELECCION";
             this.botonConfirmar.UseVisualStyleBackColor = true;
+            this.botonConfirmar.Click += new System.EventHandler(this.botonConfirmar_Click);
             // 
             // label5
             // 
@@ -74,7 +73,7 @@
             // 
             // botonBuscar
             // 
-            this.botonBuscar.Location = new System.Drawing.Point(482, 58);
+            this.botonBuscar.Location = new System.Drawing.Point(546, 58);
             this.botonBuscar.Name = "botonBuscar";
             this.botonBuscar.Size = new System.Drawing.Size(108, 47);
             this.botonBuscar.TabIndex = 33;
@@ -84,7 +83,7 @@
             // 
             // botonLimpiar
             // 
-            this.botonLimpiar.Location = new System.Drawing.Point(482, 5);
+            this.botonLimpiar.Location = new System.Drawing.Point(546, 5);
             this.botonLimpiar.Name = "botonLimpiar";
             this.botonLimpiar.Size = new System.Drawing.Size(108, 46);
             this.botonLimpiar.TabIndex = 32;
@@ -98,23 +97,23 @@
             this.dataGridMicro.AllowUserToDeleteRows = false;
             this.dataGridMicro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridMicro.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Cod_Reco,
+            this.Patentes,
             this.Tipo_Serv,
-            this.Ciu_Origen,
-            this.Ciu_Destino,
-            this.Precio_Base_Pasaje,
-            this.Precio_Base_Kg,
-            this.Estado,
+            this.Marca,
+            this.Nro_Micro,
+            this.Cant_Butacas,
             this.Seleccionar});
             this.dataGridMicro.Location = new System.Drawing.Point(12, 118);
             this.dataGridMicro.Name = "dataGridMicro";
             this.dataGridMicro.ReadOnly = true;
             this.dataGridMicro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridMicro.Size = new System.Drawing.Size(846, 291);
+            this.dataGridMicro.Size = new System.Drawing.Size(679, 291);
             this.dataGridMicro.TabIndex = 31;
+            this.dataGridMicro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridMicro_CellContentClick);
             // 
             // comboBoxTipoServ
             // 
+            this.comboBoxTipoServ.Enabled = false;
             this.comboBoxTipoServ.FormattingEnabled = true;
             this.comboBoxTipoServ.Location = new System.Drawing.Point(105, 52);
             this.comboBoxTipoServ.Name = "comboBoxTipoServ";
@@ -124,19 +123,19 @@
             // comboBoxMarca
             // 
             this.comboBoxMarca.FormattingEnabled = true;
-            this.comboBoxMarca.Location = new System.Drawing.Point(335, 6);
+            this.comboBoxMarca.Location = new System.Drawing.Point(298, 5);
             this.comboBoxMarca.Name = "comboBoxMarca";
-            this.comboBoxMarca.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxMarca.Size = new System.Drawing.Size(201, 21);
             this.comboBoxMarca.TabIndex = 28;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(252, 54);
+            this.label4.Location = new System.Drawing.Point(252, 58);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.Size = new System.Drawing.Size(144, 13);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Cantidad Butacas";
+            this.label4.Text = "Cantidad minima de Butacas:";
             // 
             // label3
             // 
@@ -158,9 +157,9 @@
             // 
             // textBoxPatente
             // 
-            this.textBoxPatente.Location = new System.Drawing.Point(122, 6);
+            this.textBoxPatente.Location = new System.Drawing.Point(65, 6);
             this.textBoxPatente.Name = "textBoxPatente";
-            this.textBoxPatente.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPatente.Size = new System.Drawing.Size(161, 20);
             this.textBoxPatente.TabIndex = 24;
             // 
             // label1
@@ -172,11 +171,20 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "Patente:";
             // 
-            // Cod_Reco
+            // textBoxCantBut
             // 
-            this.Cod_Reco.HeaderText = "Patente";
-            this.Cod_Reco.Name = "Cod_Reco";
-            this.Cod_Reco.ReadOnly = true;
+            this.textBoxCantBut.Location = new System.Drawing.Point(399, 55);
+            this.textBoxCantBut.MaxLength = 3;
+            this.textBoxCantBut.Name = "textBoxCantBut";
+            this.textBoxCantBut.Size = new System.Drawing.Size(100, 20);
+            this.textBoxCantBut.TabIndex = 36;
+            this.textBoxCantBut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCantBut_KeyPress);
+            // 
+            // Patentes
+            // 
+            this.Patentes.HeaderText = "Patente";
+            this.Patentes.Name = "Patentes";
+            this.Patentes.ReadOnly = true;
             // 
             // Tipo_Serv
             // 
@@ -184,36 +192,24 @@
             this.Tipo_Serv.Name = "Tipo_Serv";
             this.Tipo_Serv.ReadOnly = true;
             // 
-            // Ciu_Origen
+            // Marca
             // 
-            this.Ciu_Origen.HeaderText = "Marca";
-            this.Ciu_Origen.Name = "Ciu_Origen";
-            this.Ciu_Origen.ReadOnly = true;
+            this.Marca.HeaderText = "Marca";
+            this.Marca.Name = "Marca";
+            this.Marca.ReadOnly = true;
             // 
-            // Ciu_Destino
+            // Nro_Micro
             // 
-            this.Ciu_Destino.HeaderText = "Modelo";
-            this.Ciu_Destino.Name = "Ciu_Destino";
-            this.Ciu_Destino.ReadOnly = true;
+            this.Nro_Micro.HeaderText = "Nro_Micro";
+            this.Nro_Micro.Name = "Nro_Micro";
+            this.Nro_Micro.ReadOnly = true;
+            this.Nro_Micro.Width = 120;
             // 
-            // Precio_Base_Pasaje
+            // Cant_Butacas
             // 
-            this.Precio_Base_Pasaje.HeaderText = "Nro_Micro";
-            this.Precio_Base_Pasaje.Name = "Precio_Base_Pasaje";
-            this.Precio_Base_Pasaje.ReadOnly = true;
-            this.Precio_Base_Pasaje.Width = 120;
-            // 
-            // Precio_Base_Kg
-            // 
-            this.Precio_Base_Kg.HeaderText = "Fecha_Alta";
-            this.Precio_Base_Kg.Name = "Precio_Base_Kg";
-            this.Precio_Base_Kg.ReadOnly = true;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Cant_Butacas";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
+            this.Cant_Butacas.HeaderText = "Cant_Butacas";
+            this.Cant_Butacas.Name = "Cant_Butacas";
+            this.Cant_Butacas.ReadOnly = true;
             // 
             // Seleccionar
             // 
@@ -222,15 +218,6 @@
             this.Seleccionar.ReadOnly = true;
             this.Seleccionar.Text = "Seleccionar";
             this.Seleccionar.UseColumnTextForButtonValue = true;
-            // 
-            // textBoxCantBut
-            // 
-            this.textBoxCantBut.Location = new System.Drawing.Point(349, 51);
-            this.textBoxCantBut.MaxLength = 3;
-            this.textBoxCantBut.Name = "textBoxCantBut";
-            this.textBoxCantBut.Size = new System.Drawing.Size(100, 20);
-            this.textBoxCantBut.TabIndex = 36;
-            this.textBoxCantBut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCantBut_KeyPress);
             // 
             // Seleccion_Micro
             // 
@@ -273,14 +260,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxPatente;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Reco;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Serv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ciu_Origen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ciu_Destino;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Base_Pasaje;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Base_Kg;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
         public System.Windows.Forms.TextBox textBoxCantBut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Patentes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Serv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Marca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Micro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cant_Butacas;
+        private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
     }
 }
